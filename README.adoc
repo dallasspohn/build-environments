@@ -1,0 +1,54 @@
+= Done:
+- vim
+- Copy .bashrc file
+- Copy bash-git-prompt files
+- Copy bash auto completion files
+- Copy flamel container wrapper script
+- Copy .vimrc file
+- Copy vim plugin files
+- Ensure podman is started
+
+= TODO:
+To be added in future iterations
+- Vale
+- Nov 3 2021 Added a live path to the files/bin folder.
+
+
+= Instructions
+
+1. Clone repository
+2. Modify variables in vars/main.yml
+3. Run `ansible-playbook deploy.yml'
+
+
+
+YouCompleteMe vim plugin
+YCM does not work without extra steps.
+
+$ cd ~/.vim/bundle/YouCompleteMe
+$ git checkout d98f896
+$ git submodule update --init --recursive
+$ sudo dnf install cmake gcc-c++ make python3-devel
+$ python3 install.py
+
+# CD to
+`DO374/classroom/grading/`
+
+# then run
+`make clean and make build`
+
+
+## Run dynolabs-pr 560
+
+deactivate && rm -rf ~/<venv-name>/
+
+alias dynobuild='cd ~/dev/DO374/classroom/grading/; make clean; make build; pip install --no-cache-dir dist/*.gz'
+
+
+pip instll
+
+
+--force-reinstall
+--no-cache-dir
+pip uninstall _________
+pip install --no-cache-dir /path/to/*.tar.gz
