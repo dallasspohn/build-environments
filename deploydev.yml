@@ -1,6 +1,6 @@
 ---
 - name: Install dev environment
-  hosts: all
+  hosts: workstation
   gather_facts: true
 #  connection: local
 
