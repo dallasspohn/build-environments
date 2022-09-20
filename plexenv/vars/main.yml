@@ -2,7 +2,6 @@
   devuser: dallas
   packages:
     - vim
-    - vim-minimal
     - vim-enhanced
     - aspell
     - podman
