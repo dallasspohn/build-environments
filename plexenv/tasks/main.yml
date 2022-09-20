@@ -15,13 +15,13 @@
         group: "{{ ansible_env['LOGNAME'] }}"
         mode: '0700'
 
-    - name: Copy bash-git-prompt files
-      copy:
-        src: files/bashprompt/.bash-git-prompt/
-        dest: "{{ ansible_env['HOME'] }}.bash-git-prompt/"
-        owner: "{{ ansible_env['LOGNAME'] }}"
-        group: "{{ ansible_env['LOGNAME'] }}"
-        mode: '0700'
+    # - name: Copy bash-git-prompt files
+    #   copy:
+    #     src: files/bashprompt/.bash-git-prompt/
+    #     dest: "{{ ansible_env['HOME'] }}.bash-git-prompt/"
+    #     owner: "{{ ansible_env['LOGNAME'] }}"
+    #     group: "{{ ansible_env['LOGNAME'] }}"
+    #     mode: '0700'
 
     - name: Creates pip directory
       file:
