@@ -69,7 +69,7 @@
         dest: ~/.vim/bundle/Vundle.vim
 
     - name: Download Surfshark
-      get_url: url=https://ocean.surfshark.com/debian/pool/main/s/surfshark-release/surfshark-release_1.0.0-2_amd64.deb dest=/home/dallas/Downloads/
+      get_url: url=https://ocean.surfshark.com/debian/pool/main/s/surfshark-release/surfshark-release_1.0.0-2_amd64.deb dest=/home/dallas/Downloads
 
     - name: Install Surfshark
       apt: deb="/home/{{ ansible_env.USER }}/Downloads/surfshark-release_1.0.0-2_amd64.deb"
