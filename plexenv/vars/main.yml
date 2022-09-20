@@ -1,8 +1,12 @@
 ---
-  devuser: student
+  devuser: dallas
   packages:
+    - vim
     - vim-minimal
     - vim-enhanced
     - aspell
     - podman
     - make
+    - terminator
+    - openssh-server
+    - git
