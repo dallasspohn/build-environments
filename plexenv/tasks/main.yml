@@ -72,9 +72,9 @@
       get_url: url=https://ocean.surfshark.com/debian/pool/main/s/surfshark-release/surfshark-release_1.0.0-2_amd64.deb dest=/home/dallas/Downloads
 
     - name: Install Surfshark
+      become: True
       apt: deb="/home/{{ ansible_env.USER }}/Downloads/surfshark-release_1.0.0-2_amd64.deb"
-      sudo: true
-      when: my_package_check_deb.rc == 1
+        when: my_package_check_deb.rc == 1
 
     - name: Install curriculum dev packages
       become: True
