@@ -3,7 +3,6 @@
   packages:
     - vim
     - aspell
-    - podman
     - make
     - terminator
     - openssh-server
