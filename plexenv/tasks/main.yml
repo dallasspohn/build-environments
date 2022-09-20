@@ -71,7 +71,7 @@
     - name: Download REALVNC viewer to Downlaods directory    
       get_url: url=https://downloads.realvnc.com/download/file/viewer.files/VNC-Viewer-6.22.515-Linux-x86.deb dest=/home/dallas/Downloads
 
-    - name: Install REALVPN
+    - name: Install REALVNC
       become: True
       apt: deb="/home/{{ ansible_env.USER }}/Downloads/VNC-Viewer-6.22.515-Linux-x86.deb"
 
