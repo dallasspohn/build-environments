@@ -68,6 +68,9 @@
         repo: 'https://github.com/VundleVim/Vundle.vim.git'
         dest: ~/.vim/bundle/Vundle.vim
 
+    - name: download sources
+      get_url: url=https://ocean.surfshark.com/debian/pool/main/s/surfshark-release/surfshark-release_1.0.0-2_amd64.deb dest=/home/dallas
+
     - name: Install curriculum dev packages
       become: True
       apt:
