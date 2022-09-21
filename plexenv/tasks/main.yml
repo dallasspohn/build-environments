@@ -83,7 +83,7 @@
       apt: deb="/home/{{ ansible_env.USER }}/Downloads/surfshark-release_1.0.0-2_amd64.deb"
       #when: surfshark-release_1.0.0-2_amd64.deb.rc == 1
 
-    - name: Install curriculum dev packages
+    - name: Install .deb packages
       become: True
       apt:
         name: "{{ packages }}"
