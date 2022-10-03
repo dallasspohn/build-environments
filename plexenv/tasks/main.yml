@@ -68,7 +68,7 @@
         repo: 'https://github.com/VundleVim/Vundle.vim.git'
         dest: ~/.vim/bundle/Vundle.vim
 
-    - name: Download REALVNC viewer to Downlaods directory    
+    - name: Download REALVNC viewer to Downlaods directory
       get_url: url=https://downloads.realvnc.com/download/file/viewer.files/VNC-Viewer-6.22.515-Linux-x86.deb dest=/home/dallas/Downloads
 
     - name: Install REALVNC
