@@ -14,6 +14,9 @@ ch8 = ['update-delegation', 'update-parallelism', 'update-management', 'update-r
 ch9 = ['create-writing', '', 'builder-custom', 'builder-validate', 'builder-use', 'builder-review']
 ch10 = ['review-cr1', 'review-cr2', 'review-cr3']
 
+
+do374-AAP2.2=['develop-navigator', 'develop-git', 'develop-practices', 'develop-review', 'manage-reusing', 'manage-finding', 'manage-selecting', 'controller-playbooks', 'controller-review', 'config-ansible', 'config-navigator', 'inventory-dynamic', 'inventory-yaml', 'inventory-variables', 'inventory-review', 'task-escalation', 'task-execution', 'task-tagging', 'task-speed', 'data-filters', 'data-lookups', 'data-loops', 'data-netfilters', 'data-review', 'update-delegation', 'update-parallelism', 'update-management', 'create-writing', 'builder-custom', 'builder-validate', 'builder-use'] #, '# This is not working yet ...', '# builder-review']
+
 lab_name = 'This lab is '
 
 for c1 in ch1:
@@ -60,6 +63,11 @@ for c9 in ch9:
     print(lab_name, c9)
     os.system("lab start " + c9)
     os.system("lab finish " + c9)
+
+for c10 in ch10:
+    print(lab_name, c10)
+    os.system("lab start " + c10)
+    os.system("lab finish " + c10)
 
 for c11 in ch11:
     print(lab_name, c11)
