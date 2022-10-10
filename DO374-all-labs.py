@@ -152,5 +152,12 @@ def ch12():
 #    out = yaml.load(stream)
 #    print(out["scripts"]["chapter"])
 
+def aap_all():
+    for lab in AAP22:
+        print(lab_name, lab)
+        os.system("lab start " + lab)
+        os.system("lab finish " + lab) 
 
-ch1()
+aap_all()
+
+#ch1()
