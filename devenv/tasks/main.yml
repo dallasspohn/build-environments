@@ -120,10 +120,10 @@
         repo: 'https://github.com/VundleVim/Vundle.vim.git'
         dest: ~/.vim/bundle/Vundle.vim
 
-    - name: Install course git
-      git:
-        repo: 'git@github.com:RedHatTraining/DO374.git'
-        dest: ~/dev/
+    # - name: Install course git
+    #   git:
+    #     repo: 'git@github.com:RedHatTraining/DO374.git'
+    #     dest: ~/dev/
 
 #    - git: Download Vale Styles
 #        repo: 'git@github.com:dallasspohn/vale.git'
