@@ -1,0 +1,6 @@
+---
+- name: Random value
+  hosts: localhost
+  ansible.builtin.assert:
+  that:
+    - {{ ['Douglas', 'Marvin', 'Arthur'] | 'random' }}
