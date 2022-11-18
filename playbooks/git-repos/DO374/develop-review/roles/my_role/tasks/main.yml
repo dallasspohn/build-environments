@@ -1,0 +1,11 @@
+---
+- ansible.builtin.lineinfile:
+    path: /etc/default/grub
+    regexp: "^GRUB_TIMEOUT="
+    line: "GRUB_TIMEOUT={{ timeout | int }}"
+  when: persistent | bool == true
+
+- ansible.builtin.lineinfile:
+    path: /boot/grub2/grub.cfg
+    regexp: "^set timeout="
+    line: "set timeout={{ timeout | int }}"

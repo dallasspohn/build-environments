@@ -1,0 +1,8 @@
+---
+- name: Using the uri module to delete a Job Template
+  hosts: tower
+  gather_facts: false
+
+  tasks:
+
+...

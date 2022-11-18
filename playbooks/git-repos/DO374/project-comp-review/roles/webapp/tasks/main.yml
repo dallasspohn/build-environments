@@ -1,0 +1,8 @@
+---
+# tasks file for webapp
+
+- name: Ensure placeholder content is deployed
+  ansible.builtin.copy:
+    content: "{{ msg }} (version {{ vers }})\n"
+    dest: /var/www/html/index.html
+

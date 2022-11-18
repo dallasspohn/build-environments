@@ -1,0 +1,10 @@
+tower:
+  hosts:
+    tower.lab.example.com:
+  vars:
+    template_name: ...
+    copy_template_name: ...
+    tower_fqdn: tower.lab.example.com
+    tower_user: ...
+    tower_password: redhat123
+

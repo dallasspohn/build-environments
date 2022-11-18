@@ -1,0 +1,32 @@
+- name: rsyslog server deploy
+  hosts: log_servers
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Enabling reception of logs via TCP protocol
+      ansible.builtin.replace:
+        dest: /etc/rsyslog.conf
+        regexp: '^#(.*imtcp".*)'
+        replace: '\1'
+      notify:
+        - Reload rsyslog service
+
+    - name: Configuring firewall
+      ansible.posix.firewalld:
+        port: 514/tcp
+        permanent: yes
+        state: enabled
+      notify:
+        - Reload firewall service
+
+  handlers:
+    - name: Reload rsyslog service
+      ansible.builtin.service:
+        name: rsyslog
+        state: restarted
+
+    - name: Reload firewall service
+      ansible.builtin.service:
+        name: firewalld
+        state: restarted

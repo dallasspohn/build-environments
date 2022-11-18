@@ -1,0 +1,9 @@
+---
+- name: Backup and Restore Red Hat Ansible Automation Platform
+  hosts: all
+  become: false
+  gather_facts: false
+  tasks:
+    - name: Display comprehensive review message
+      debug:
+        msg: This is the backup and restore job template.

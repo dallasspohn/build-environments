@@ -1,0 +1,9 @@
+---
+- name: Simulate Manual Change
+  hosts: serverc.lab.example.com
+
+
+  roles:
+  - role: apache
+    apache_port: 80
+

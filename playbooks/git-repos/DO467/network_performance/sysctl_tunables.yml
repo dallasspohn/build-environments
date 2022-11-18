@@ -1,0 +1,17 @@
+---
+- name: Update kernel parameters netdev max backlog and budget
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Set sysctl net.core.netdev_max_backlog to 10000
+      ansible.posix.sysctl:
+        name: net.core.netdev_max_backlog
+        value: 10000
+        sysctl_set: yes
+
+    - name: Set sysctl net.core.netdev_budget to 600
+      ansible.posix.sysctl:
+        name: net.core.netdev_budget
+        value: 600
+        sysctl_set: yes

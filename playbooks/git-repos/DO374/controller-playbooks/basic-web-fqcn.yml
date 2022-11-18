@@ -1,0 +1,35 @@
+---
+- name: Configure a basic web server
+  hosts: web
+  become: true
+  tasks:
+    - name: Install software
+      ansible.builtin.yum:
+        name:
+          - httpd
+          - firewalld
+        state: latest
+
+    - name: Start and enable services
+      ansible.builtin.service:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      loop:
+        - httpd
+        - firewalld
+
+    - name: Open firewall access
+      ansible.posix.firewalld:
+        service: "{{ item }}"
+        immediate: true
+        permanent: true
+        state: enabled
+      loop:
+        - http
+
+    - name: Configure simple index.html
+      ansible.builtin.copy:
+        content: "Hello world from {{ ansible_facts['fqdn'] }}.\n"
+        dest: /var/www/html/index.html
+

@@ -1,0 +1,3 @@
+# Variables for prod_clients grup of hosts
+rsyslog_server: serverd.lab.example.com
+rsyslog_port: 514

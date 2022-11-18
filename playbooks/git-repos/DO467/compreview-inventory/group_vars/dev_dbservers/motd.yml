@@ -1,0 +1,3 @@
+---
+motd_server_type: dbservers
+motd_environment: DEV

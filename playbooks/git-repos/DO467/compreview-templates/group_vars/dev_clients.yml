@@ -1,0 +1,3 @@
+# Variables for dev_clients grup of hosts
+rsyslog_server: servera.lab.example.com
+rsyslog_port: 514

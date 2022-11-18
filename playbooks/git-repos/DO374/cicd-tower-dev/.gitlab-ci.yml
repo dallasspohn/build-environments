@@ -1,0 +1,50 @@
+variables:
+  LAUNCH_TOWER_JOB: tower-cli job launch --monitor --insecure
+  TOWER_CREDENTIALS: -u admin -p redhat -h tower.lab.example.com
+  GIT_REPO: http://git:redhat321@git.lab.example.com:8081/git/cicd-tower.git
+
+stages:
+  - lint
+  - deploy
+  - auto_merge
+
+# First stage; all branches
+syntax check and linting:
+  stage: lint
+  ansible.builtin.script:
+    - if ls *.yml; then true; else echo "No playbooks found!"; exit 1; fi
+    - ansible-lint *.yml
+
+# Second stage; only dev branch
+launch test job:
+  stage: deploy
+  ansible.builtin.script:
+    - tower-cli config verify_ssl false
+    - $LAUNCH_TOWER_JOB $TOWER_CREDENTIALS -J "Deploy Test WebServers"
+    - echo $?
+  only:
+    - dev
+
+# Second stage; only the master branch
+launch prod job:
+  stage: deploy
+  ansible.builtin.script:
+    - tower-cli config verify_ssl false
+    - $LAUNCH_TOWER_JOB $TOWER_CREDENTIALS -J "Deploy Prod WebServers"
+    - echo $?
+  only:
+    - master
+
+# Third stage; only applies to the dev branch
+push to master:
+  stage: auto_merge
+  ansible.builtin.script:
+    - git remote set-url origin $GIT_REPO
+    - git checkout dev && git pull
+    - git checkout master && git pull
+    - git merge --no-ff dev
+    - git push origin master
+  only:
+    - dev
+
+

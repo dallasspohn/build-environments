@@ -1,0 +1,3 @@
+---
+motd_server_type: webservers
+motd_environment: PROD

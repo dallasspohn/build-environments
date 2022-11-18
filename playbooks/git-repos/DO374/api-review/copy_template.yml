@@ -1,0 +1,21 @@
+---
+- name: Using the uri module to connect to tower
+  hosts: tower
+  gather_facts: false
+
+  tasks:
+    - name: Copy the existing New template using the uri module
+      ansible.builtin.uri:
+        url: ...
+        validate_certs: false
+        method: ...
+        return_content: true
+        force_basic_auth: true
+        user: ...
+        password: ...
+        status_code: [201, 202]
+        body:
+          name: ...
+        body_format: json
+
+...

@@ -1,0 +1,9 @@
+---
+ansible-navigator:
+  ansible:
+    config:
+      path: ./ansible.cfg
+  execution-environment:
+    image: hub.lab.example.com/ee-motd-minimal:latest
+    pull:
+      policy: missing

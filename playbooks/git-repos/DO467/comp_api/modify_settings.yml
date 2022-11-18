@@ -1,0 +1,21 @@
+---
+- name: Configure Automation Controller Settings
+  hosts: localhost
+  become: false
+  gather_facts: false
+  vars_files:
+    - vars/auth.yml
+    - vars/settings.yml
+
+  tasks:
+    - name: Loop through settings
+      ansible.controller.settings:
+        controller_host: '{{ controller_auth["host"] }}'
+        controller_username: '{{ controller_auth["username"] }}'
+        controller_password: '{{ controller_auth["password"] }}'
+        validate_certs: false
+        name: '{{ item["key"] }}'
+        value: '{{ item["value"] }}'
+      loop: '{{ controller_settings }}'
+      loop_control:
+        label: Configuring the '{{ item["key"] }}' setting.

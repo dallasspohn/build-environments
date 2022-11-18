@@ -1,0 +1,26 @@
+---
+- name: Install and create a sample database
+  hosts: all
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Ensure MariaDB is installed
+      yum:
+        name:
+          - mariadb
+          - mariadb-server
+          - python3-PyMySQL
+        state: present
+
+    - name: Ensure the mariadb service is started and enabled
+      systemd:
+        name: mariadb
+        state: started
+        enabled: true
+
+    - name: Ensure the samples database exists
+      mysql_db:
+        name: samples
+        state: present
+

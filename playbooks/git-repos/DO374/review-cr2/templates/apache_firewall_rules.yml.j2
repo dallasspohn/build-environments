@@ -1,0 +1,7 @@
+- port: {{ apache_port }}
+  protocol: TCP
+  zone: internal
+{% for load_balancer in groups['lb_servers'] %}
+- zone: internal
+  source: "{{ load_balancer_ip_addr }}"
+{% endfor %}

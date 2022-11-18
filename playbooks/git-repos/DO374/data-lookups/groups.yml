@@ -1,0 +1,8 @@
+- name: devs
+  members:
+    - jonfoo
+    - janebar
+- name: ops
+  members:
+    - philbaz
+

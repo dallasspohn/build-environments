@@ -1,0 +1,5 @@
+Current Host: {{ ansible_facts['fqdn'] }} <br>
+Server list: <br>
+{% for host in groups['all'] %}
+{{ host }} <br>
+{% endfor %}

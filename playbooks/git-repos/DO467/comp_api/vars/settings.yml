@@ -1,0 +1,4 @@
+---
+controller_settings:
+  - key: ANSIBLE_FACT_CACHE_TIMEOUT
+    value: 0

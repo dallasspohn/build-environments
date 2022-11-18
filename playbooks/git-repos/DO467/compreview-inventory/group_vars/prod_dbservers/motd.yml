@@ -1,0 +1,3 @@
+---
+motd_server_type: dbbservers
+motd_environment: PROD

@@ -1,0 +1,24 @@
+---
+
+- name: Ensure Apache is deployed
+  hosts: web_servers
+  force_handlers: true
+  gather_facts: false
+
+  roles:
+    # Use the apache_firewall_rules.yml.j2 template to
+    # generate the firewall rules.
+    # Remove the two current list items from the firewall_rules
+    # variable definition and set its value with a Jinja2
+    # template of the form:
+    # firewall_rules: "{{ plugin | filter }}"
+    - role: apache
+      firewall_rules:
+        # HTTP requests from the internal zone
+        - zone: internal
+          service: http
+
+        # Load balancer IP access from the internal zone
+        - zone: internal
+          source: 172.25.250.10
+

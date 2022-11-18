@@ -1,0 +1,52 @@
+---
+- name: Testing the training.web collection
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Ensure Apache HTTP Server is deployed
+      ansible.builtin.include_role:
+        name: training.web.apache
+
+    - name: Ensure the QR code image exists
+      ansible.builtin.set_fact:
+        qrcode: "{{ lookup('training.web.qrcode', '/tmp/qr' + inventory_hostname, text='Hello ' + inventory_hostname) }}"
+
+    - name: Ensure the QR code image is published
+      ansible.builtin.copy:
+        src: "/tmp/qr{{ inventory_hostname }}"
+        dest: /var/www/html/welcome.png
+        owner: root
+        group: root
+        mode: 0644
+        setype: httpd_sys_content_t
+
+    - name: Ensure the minimal index page exists
+      ansible.builtin.copy:
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8">
+              <title>Welcome</title>
+            </head>
+            <body>
+              <img src="welcome.png" alt="Hello World">
+            </body>
+          </html>
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: 0644
+        setype: httpd_sys_content_t
+
+    - name: Ensure the firewall is opened
+      ansible.builtin.include_role:
+        name: training.web.firewall
+      vars:
+        firewall_rules:
+          - service: http
+            zone: public
+          - service: http
+            zone: internal
+...

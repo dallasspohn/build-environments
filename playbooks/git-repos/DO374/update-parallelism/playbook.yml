@@ -1,0 +1,19 @@
+---
+- name: Update web server
+  hosts: webservers
+
+  tasks:
+    - name: Lastest httpd package installed
+      ansible.builtin.yum:
+        name: httpd
+        state: latest
+      notify:
+        - Restart httpd
+
+  handlers:
+    - name: Restart httpd
+      ansible.builtin.service:
+        name: httpd
+        enabled: true
+        state: restarted
+

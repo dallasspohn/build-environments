@@ -1,0 +1,13 @@
+---
+- name: Deploy simple Message of the Day
+  hosts: all
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Populate MOTD
+      template:
+        src: templates/motd.j2
+        dest: /etc/motd
+      when:
+        - motd_server_type is defined
+        - motd_environment is defined

@@ -1,0 +1,10 @@
+- name: Ensure the web application is deployed
+  hosts: mylocal_servers
+  gather_facts: false
+  vars:
+    version: v1.0
+    message: "This is {{ inventory_hostname }}."
+
+  roles:
+    - role: webapp
+

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "{\"net_core_netdev_max_backlog\" : \"$(sysctl net.core.netdev_max_backlog -n)\"}"

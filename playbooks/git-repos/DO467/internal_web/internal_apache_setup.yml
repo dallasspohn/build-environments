@@ -1,0 +1,46 @@
+---
+- name: Configure a simple web server and allow access to internal networks
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Install software
+      ansible.builtin.dnf:
+        name:
+          - httpd
+          - firewalld
+        state: latest
+
+    - name: Set local_network variable
+      vars:
+        ip_netmask: "{{ ansible_facts['default_ipv4']['network'] }}/{{ ansible_facts['default_ipv4']['netmask'] }}"
+      set_fact:
+        local_network: "{{ ip_netmask | ansible.utils.ipaddr('net') }}"
+        cacheable: true
+
+    - name: Create a simple webpage
+      template:
+        src: templates/index.html.j2
+        dest: /var/www/html/index.html
+
+    - name: Start and enable services
+      ansible.builtin.service:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      loop:
+        - httpd
+        - firewalld
+
+    - name: Open ports for local network
+      vars:
+        ports_protocols:
+          - port: 80
+            protocol: tcp
+      ansible.posix.firewalld:
+        zone: public
+        immediate: true
+        permanent: true
+        state: enabled
+        rich_rule: 'rule family="ipv4" source address="{{ hostvars[inventory_hostname].local_network }}" port protocol="{{ item.protocol }}" port="{{ item.port }}" accept'
+      loop: "{{ ports_protocols }}"

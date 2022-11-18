@@ -1,0 +1,19 @@
+---
+- name: rsyslog clients deploy
+  hosts: log_clients
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Clients configuration
+      ansible.builtin.lineinfile:
+        path: /etc/rsyslog.conf
+        line: "*.* @@{{ rsyslog_server }}:{{ rsyslog_port }}"
+      notify:
+        - Reload rsyslog service
+
+  handlers:
+    - name: Reload rsyslog service
+      ansible.builtin.service:
+        name: rsyslog
+        state: restarted

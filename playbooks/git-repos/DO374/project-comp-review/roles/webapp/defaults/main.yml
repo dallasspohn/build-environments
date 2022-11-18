@@ -1,0 +1,2 @@
+vers: v1.0
+msg: "This is {{ inventory_hostname }}."

@@ -1,0 +1,50 @@
+---
+- name: Revert HTTPS configuration
+  hosts: all
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Install software
+      dnf:
+        name:
+          - httpd
+          - firewalld
+        state: latest
+
+    - name: Remove Apache configuration for HTTPS
+      file:
+        path: /etc/httpd/conf.d/ssl.conf
+        state: absent
+      notify: restart_apache
+
+    - name: Remove software
+      dnf:
+        name:
+          - mod_ssl
+        state: absent
+        autoremove: true
+
+    - name: Start and enable services
+      service:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      loop:
+        - httpd
+        - firewalld
+
+    - name: Remove services from the firewall
+      ansible.posix.firewalld:
+        service: "{{ item }}"
+        state: disabled
+        immediate: true
+        permanent: true
+      loop:
+        - https
+
+  handlers:
+    - name: restart_apache
+      service:
+        name: httpd
+        state: restarted
+

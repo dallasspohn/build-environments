@@ -1,0 +1,8 @@
+---
+- name: Using the uri module to connect to tower
+  hosts: tower
+  gather_facts: false
+
+  tasks:
+
+...

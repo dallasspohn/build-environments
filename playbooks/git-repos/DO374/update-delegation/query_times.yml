@@ -1,0 +1,6 @@
+---
+- name: Query server times and store them locally
+  hosts: web_servers
+  gather_facts: false
+
+  tasks:

@@ -1,0 +1,8 @@
+---
+controller_settings:
+  - key: ANSIBLE_FACT_CACHE_TIMEOUT
+    value: 86400
+  - key: SESSION_COOKIE_AGE
+    value: 3600
+  - key: SESSIONS_PER_USER
+    value: 2

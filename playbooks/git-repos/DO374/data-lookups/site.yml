@@ -1,0 +1,26 @@
+- name: Populate users and groups
+  hosts: all
+  gather_facts: false
+  tasks:
+
+    - name: Load group information
+      ansible.builtin.set_fact:
+        user_groups: "FIXME"
+
+    - name: Create groups
+      ansible.builtin.group:
+        name: "FIXME"
+        state: present
+      loop: "FIXME"
+
+    - name: Create users
+      ansible.builtin.debug:
+        msg: "To be done"
+
+    - name: Add users to groups
+      ansible.builtin.user:
+        name: '{{ item.1 }}'
+        groups: "{{ item.0.name }}"
+        append: true
+      loop: "{{ user_groups | subelements('members', 'skip_missing=true') }}"
+

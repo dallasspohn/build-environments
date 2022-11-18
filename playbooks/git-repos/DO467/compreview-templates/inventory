@@ -1,0 +1,27 @@
+# Server in Dev environment
+[dev_servers]
+servera.lab.example.com
+
+# Server in Prod environment
+[prod_servers]
+serverd.lab.example.com
+
+# Group of clients in Dev environment
+[dev_clients]
+serverb.lab.example.com
+serverc.lab.example.com
+
+# Group of clients in Prod environment
+[prod_clients]
+servere.lab.example.com
+serverf.lab.example.com
+
+# Servers
+[log_servers:children]
+dev_servers
+prod_servers
+
+# Clients
+[log_clients:children]
+dev_clients
+prod_clients

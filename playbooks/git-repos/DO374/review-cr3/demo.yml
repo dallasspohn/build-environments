@@ -1,0 +1,12 @@
+---
+- name: Testing the iscsi_target_create role in the review.system collection
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Ensure the iSCSI target is configured
+      ansible.builtin.include_role:
+        name: #FIXME#
+      vars:
+        #FIXME#: vdb
+...

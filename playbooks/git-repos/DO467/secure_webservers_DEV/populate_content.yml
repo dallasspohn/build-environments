@@ -1,0 +1,25 @@
+---
+- name: Populate webserver with content
+  hosts: all
+  become: true
+  gather_facts: false
+  vars:
+    repo_source: https://git.lab.example.com/git/slides.git
+    repo_branch: main
+    repo_dest: /var/www/html
+  tasks:
+    - name: Install software
+      dnf:
+        name:
+          - git
+        state: latest
+
+    - name: Clone content to "{{ repo_dest }}"
+      git:
+        repo: "{{ repo_source }}"
+        version: "{{ repo_branch }}"
+        dest: "{{ repo_dest }}"
+        clone: true
+        force: true
+        recursive: true
+        update: true
