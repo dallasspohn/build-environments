@@ -5,7 +5,7 @@
 [credential "https://github.com"]
     username = dallasspohn
     password = !d!gPyth0n
-    token = d3bd189eaa18620031031afab3e7eadf54943137
+    token = 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
 
 [push]
     default = simple
