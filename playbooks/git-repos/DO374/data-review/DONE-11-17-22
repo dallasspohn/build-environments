@@ -1,0 +1,14 @@
+This exercise sets up a loadbalancer on servera.lab.example.com pointing to server[b,c]
+
+7.
+Verify that web browser requests from workstation to the load balancer on servera
+succeed, and that direct requests from workstation to TCP port 8008 on the back-end
+web servers, serverb and serverc, are denied.
+[student@workstation data-review]$ curl servera
+This is serverb. (version v1.0)
+[student@workstation data-review]$ curl servera
+This is serverc. (version v1.0)
+[student@workstation data-review]$ curl serverb
+curl: (7) Failed to connect to serverb port 80: No route to host
+[student@workstation data-review]$ curl serverc:8008
+curl: (7) Failed to connect to serverc port 8008: No route to host

@@ -7,7 +7,7 @@
   zone: internal
 {% for load_balancer in groups['lb_servers'] %}
 - zone: internal
-  source: "{{ hostvars['load_balancer']['ansible_facts']['default_ipv4']['address'] }}"
+  source: "{{ hostvars[load_balancer]['ansible_facts']['default_ipv4']['address'] }}"
 {% endfor %}
 #- zone: internal
 #  source: "{{ load_balancer_ip_addr }}"

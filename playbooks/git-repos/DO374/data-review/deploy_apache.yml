@@ -13,7 +13,7 @@
     # template of the form:
     # firewall_rules: "{{ plugin | filter }}"
     - role: apache
-      firewall_rules: "{{ lookup('ansible.builtin.template', `tfile`) | from_yaml }}"
+      firewall_rules: "{{ lookup(ansible.builtin.template, apache_firewall_rules.yml.j2) | from_yaml }}"
 #      tfile: apache_firewall_rules.yml.j2
         # HTTP requests from the internal zone
 #        - zone: internal
