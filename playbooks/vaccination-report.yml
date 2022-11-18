@@ -1,0 +1,89 @@
+---
+ - name: selectattr example - Vaccination Report
+   hosts: localhost
+   tasks:
+    -  name: debug
+       vars:
+          - userdata: [
+                        {
+                          "name": "Shanmugam",
+                          "gender": "male",
+                          "mobile": "9875643210",
+                          "dose1completed" : "yes",
+                          "dose2completed" : "yes",
+                          "age": "25",
+                          "city": "pudukottai",
+                          "state": "Tamilnadu"
+                        },
+                        {
+                          "name": "Lakshmi",
+                          "gender": "female",
+                          "mobile": "9875623410",
+                          "dose1completed" : "yes",
+                          "dose2completed" : "no",
+                          "age": "32",
+                          "city": "Chennai",
+                          "state": "Tamilnadu"
+                        },
+                        {
+                          "name": "Albert",
+                          "gender": "male",
+                          "mobile": "9875634510",
+                          "dose1completed" : "yes",
+                          "dose2completed" : "yes",
+                          "age": "65",
+                          "city": "Coimbatore",
+                          "state": "Tamilnadu"
+                        },
+                        {
+                          "name": "Abdul",
+                          "gender": "male",
+                          "mobile": "9875632341",
+                          "dose1completed" : "no",
+                          "dose2completed" : "no",
+                          "age": "45",
+                          "city": "Hosur",
+                          "state": "Tamilnadu"
+                        },
+                      ]
+          - agegroup18to45: "{{ userdata | selectattr('age','>=','18') | selectattr('age','<=','45'  ) }}"
+          - agegroup45above: "{{ userdata | selectattr('age','gt','45')  }}"
+          - dose2pending: "{{ userdata | selectattr('dose2completed','==','no') | selectattr('dose1completed','eq','yes') }}"
+          - nonvaccinated: "{{ userdata | selectattr('dose1completed','equalto','no')}}"
+          - redzoneresidents: "{{ userdata | selectattr('city','in','Coimbatore,Chennai')}}"
+          - greenzoneresidents: "{{ userdata | rejectattr('city','in','Coimbatore,Chennai')}}"
+          - cityresidents: "{{ userdata | selectattr('city','in','Coimbatore,Chennai')}}"
+       debug:
+          msg:
+          - "-------------------"
+          - "Age Group 18 to 45"
+          - "-------------------"
+          - "{{agegroup18to45}}"
+          - "-------------------"
+          - "-------------------"
+          - "Age Group 45 Above"
+          - "-------------------"
+          - "{{agegroup45above}}"
+          - "-------------------"
+          - "-------------------"
+          - "Second dose pending"
+          - "-------------------"
+          - "{{dose2pending}}"
+          - "-------------------"
+          - "Yet to Vaccinate"
+          - "-------------------"
+          - "{{nonvaccinated}}"
+          - "-------------------"
+          - "Containment Zone"
+          - "-------------------"
+          - "{{redzoneresidents}}"
+          - "-------------------"
+          - "Non Containment Zone"
+          - "-------------------"
+          - "{{greenzoneresidents}}"
+          - "-------------------"
+          - "Urbanites"
+          - "-------------------"
+          - "{{greenzoneresidents}}"
+
+

@@ -1,0 +1,54 @@
+- name: Grab the size of the workstation
+  hosts: localhost
+  gather_facts: true
+  become: false
+
+  tasks:
+
+    - name: Get the IP address from the bastion host
+      vars:
+        hosts:
+          - name: bastion.lab.example.com
+            ip:
+              - 172.25.250.254
+          - name: workstation.lab.example.com
+            ip:
+              - 172.25.250.9
+          - name: servera.lab.example.com
+            ip:
+              - 172.25.250.10
+          - name: serverb.lab.example.com
+            ip:
+              - 172.25.250.11
+          - name: serverc.lab.example.com
+            ip:
+              - 172.25.250.12
+          - name: serverd.lab.example.com
+            ip:
+              - 172.25.250.13
+          - name: servere.lab.example.com
+            ip:
+              - 172.25.250.14
+          - name: serverf.lab.example.com
+            ip:
+              - 172.25.250.15
+          - name: git.lab.example.com
+            ip:
+              - 172.25.250.5
+          - name: hub.lab.example.com
+            ip:
+              - 172.25.250.6
+          - name: controller.lab.example.com
+            ip:
+              - 172.25.250.7
+          - name: utility.lab.example.com
+            ip:
+              - 172.25.250.8
+
+
+      ansible.builtin.debug:
+        msg:
+          - "{{ hosts }}"
+          -  "{{ hosts | selectattr('name', '==', 'bastion')| map(attribute='ip') }}"
+          - "{{ host | to_nice_json }}"
+

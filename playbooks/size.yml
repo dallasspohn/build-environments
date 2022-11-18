@@ -1,0 +1,42 @@
+- name: Grab the size of the workstation
+  hosts: servera
+  gather_facts: true
+  become: false
+
+  tasks:
+
+    - name: Ensure fact is set
+      set_fact:
+        my_request: "{{ my_disk_size | default('20') }} GB"
+
+    - name: Ensure space available
+      assert:
+        that:
+          - ansible_facts['mounts']| json_query("[?mount == '/'].size_available") | first > my_request | human_to_bytes | init
+        success_msg:  You have {{ my_request }} available
+        fail_msg: You do not have {{ my_request }} available
+
+
+
+
+
+
+
+
+
+
+    # - name: Determine request size
+    #   set_fact:
+    #     my_request: "{{ my_disk_size | default('20') }} GB"
+
+    # - name: Ensure space available
+    #   assert:
+    #     that: "{{ ansible_facts['mounts'][0]['size_available'] > my_request | human_to_bytes }} "
+
+    #     success_msg:
+    #               Hooray! You have space available on your machine.
+
+    #       You asked for {{ my_request}} and we have {{ ansible_facts['mounts'][0]['size_available'] | human_readable || available }}
+
+    #     fail_msg:
+    #       Bah! You have very little space.
