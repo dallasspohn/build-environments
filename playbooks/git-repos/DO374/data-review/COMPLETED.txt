@@ -1,0 +1,5 @@
+2022-11-20
+This command ensures that the remote Git repository https://git.lab.example.com/
+student/data-review.git is initialized. The Git repository contains playbooks that
+configures a front-end load balancer and a pool of back-end web servers.
+[student@workstation ~]$ lab start data-review
