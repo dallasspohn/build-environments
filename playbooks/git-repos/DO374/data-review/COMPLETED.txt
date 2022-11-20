@@ -3,3 +3,10 @@ This command ensures that the remote Git repository https://git.lab.example.com/
 student/data-review.git is initialized. The Git repository contains playbooks that
 configures a front-end load balancer and a pool of back-end web servers.
 [student@workstation ~]$ lab start data-review
+
+
+Test Firewall
+`ansible-navigator run -m stdout test_firewall_role.yml`
+
+Run playbook
+`ansible-navigator run -m stdout site.yml`
