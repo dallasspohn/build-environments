@@ -1,6 +1,6 @@
 ---
 - name: Ensure Firewall Sources Configuration
-  firewalld:
+  ansible.posix.firewalld:
     source: "{{ item.source }}"
     zone: "{{ item.zone | default(omit) }}"
     permanent: true
@@ -10,7 +10,7 @@
   notify: reload firewalld
 
 - name: Ensure Firewall Service Configuration
-  firewalld:
+  ansible.posix.firewalld:
     service: "{{ item.service }}"
     zone: "{{ item.zone | default(omit) }}"
     permanent: true
@@ -20,7 +20,7 @@
   notify: reload firewalld
 
 - name: Ensure Firewall Port Configuration
-  firewalld:
+  ansible.posix.firewalld:
     port: "{{ item.port }}/{{ item.protocol | default('tcp') | lower }}"
     zone: "{{ item.zone | default(omit) }}"
     permanent: true

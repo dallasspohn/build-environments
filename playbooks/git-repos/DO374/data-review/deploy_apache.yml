@@ -14,3 +14,13 @@
     # firewall_rules: "{{ plugin | filter }}"
     - role: apache
       firewall_rules: "{{ lookup(ansible.builtin.template, apache_firewall_rules.yml.j2) | from_yaml }}"
+
+    ### THE OLD WAY!
+    # HTTP requests from the internal zone
+#        - zone: internal
+#          service: http
+
+        # Load balancer IP access from the internal zone
+#        - zone: internal
+#          source: 172.25.250.10
+
