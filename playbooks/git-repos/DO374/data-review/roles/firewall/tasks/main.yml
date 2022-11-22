@@ -2,7 +2,7 @@
 - name: Ensure Firewall Sources Configuration
   ansible.posix.firewalld:
     source: "{{ item.source }}"
-    zone: "{{ item.zone | default(omit) }}"
+    zone: "{{ item.zone | default(omit, true) }}"
     permanent: true
     state: "{{ item.state | default('enabled') }}"
   loop: "{{ firewall_rules }}"
@@ -12,7 +12,7 @@
 - name: Ensure Firewall Service Configuration
   ansible.posix.firewalld:
     service: "{{ item.service }}"
-    zone: "{{ item.zone | default(omit) }}"
+    zone: "{{ item.zone | default(omit, true) }}"
     permanent: true
     state: "{{ item.state | default('enabled') }}"
   loop: "{{ firewall_rules }}"
@@ -22,7 +22,7 @@
 - name: Ensure Firewall Port Configuration
   ansible.posix.firewalld:
     port: "{{ item.port }}/{{ item.protocol | default('tcp') | lower }}"
-    zone: "{{ item.zone | default(omit) }}"
+    zone: "{{ item.zone | default(omit, true) }}"
     permanent: true
     state: "{{ item.state | default('enabled') }}"
   loop: "{{ firewall_rules }}"
