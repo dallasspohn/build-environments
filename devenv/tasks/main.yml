@@ -122,7 +122,7 @@
 
     - name: Install course git
       git:
-        repo: 'git@github.com:RedHatTraining/DO374.git'
+        repo: 'https://github.com/RedHatTraining/DO374.git'
         dest: ~/dev/
 
 #    - git: Download Vale Styles
