@@ -41,10 +41,10 @@ alias spellcheck='for f in *; do aspell -c $f; done'
 alias spellinglist='for f in * ; do echo $f ; aspell list < $f | sort | uniq -c ; done'
 alias spellr="aspell --mode=asciidoc list | sort | uniq -c | sort -rn"
 alias spellrxml="aspell list | sort | uniq -c | sort -rn"
-alias flamel="flamel.sh"
+alias flamel="~/dev/flamel-container/flamel.sh $1"
 alias rebuild='flamel clean; flamel sg; evince ./tmp/en-US/pdf/*'
 alias activate='source ~/.venv/labs/bin/activate'
 alias dynobuild='cd ~/dev/DO374/classroom/grading/; make clean; make build; pip install --no-cache-dir dist/*.gz'
 alias labs='cd ~/.venv/labs/lib/python3.6/site-packages/'
 
-eval "$(starship init bash)"
+#eval "$(starship init bash)"
